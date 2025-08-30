@@ -52,7 +52,7 @@ public fun new(ctx: &mut TxContext)
 //Listeye Yeni Görev Ekleme
 public fun add(list: &mut TodoList, item: String)
 {
-    list.items.push_back(TodoItem{
+    vector::push_back(&mut list.items,TodoItem{
         title: item,
         completed: false,
     });
@@ -80,7 +80,7 @@ public fun clear(list: &mut TodoList)
 
 //Tüm Listeyi Silme
 //Bu işlem geri alınamaz. Zincir üzerindeki obje tamamen silinir.
-public fun delete(ctx: &TxContext, list : TodoList)
+public fun delete(list : TodoList, ctx: &TxContext)
 { 
     let sender = ctx.sender();
     
